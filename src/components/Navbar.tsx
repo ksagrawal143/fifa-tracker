@@ -5,6 +5,7 @@ const NAV = [
   { label: 'Matches', to: '/matches' },
   { label: 'Standings', to: '/standings' },
   { label: 'Teams', to: '/teams' },
+  { label: 'Polls', to: '/polls' },
 ];
 
 export default function Navbar() {
