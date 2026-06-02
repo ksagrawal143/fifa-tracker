@@ -4,8 +4,6 @@ import { fetchMatches, fetchNews, fetchStandings } from '../api';
 import MatchCard from '../components/MatchCard';
 import NewsCard from '../components/NewsCard';
 import StandingsTable from '../components/StandingsTable';
-import FanPoll from '../components/FanPoll';
-import { POLLS } from '../data/polls';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -96,19 +94,6 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {news.slice(0, 6).map((item, i) => (
                 <NewsCard key={item.id} news={item} featured={i === 0} />
-              ))}
-            </div>
-          </section>
-
-          {/* Fan Polls teaser */}
-          <section>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base font-bold text-white">🗳️ Fan Polls</h2>
-              <Link to="/polls" className="text-xs text-amber-400 hover:underline">All polls →</Link>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {POLLS.slice(0, 2).map(poll => (
-                <FanPoll key={poll.id} poll={poll} />
               ))}
             </div>
           </section>
