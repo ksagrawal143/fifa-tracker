@@ -1,5 +1,6 @@
 import type { Match } from '../types';
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 interface Props { match: Match; compact?: boolean }
 
@@ -8,7 +9,7 @@ export default function MatchCard({ match, compact = false }: Props) {
   const isFinished = match.status === 'finished';
 
   return (
-    <div className={`bg-gray-900 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors ${compact ? 'p-3' : 'p-4'}`}>
+    <Link to={`/matches/${match.id}`} className={`block bg-gray-900 rounded-xl border border-gray-800 hover:border-amber-400/50 hover:bg-gray-800/50 transition-all cursor-pointer ${compact ? 'p-3' : 'p-4'}`}>
       {/* Stage + Status */}
       <div className="flex items-center justify-between mb-3">
         <span className="text-xs text-gray-500">{match.group ? `Group ${match.group}` : match.stage}</span>
@@ -61,6 +62,11 @@ export default function MatchCard({ match, compact = false }: Props) {
           📍 {match.venue}, {match.city}
         </div>
       )}
-    </div>
+      {!compact && (
+        <div className="mt-2 text-center text-xs text-amber-500/60 font-medium">
+          Tap for head-to-head →
+        </div>
+      )}
+    </Link>
   );
 }
