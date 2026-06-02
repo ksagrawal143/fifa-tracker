@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { @apply bg-gray-950 text-gray-100; font-family: system-ui, -apple-system, sans-serif; }
+  #root { width: 100%; min-height: 100vh; }
+}
+
+@layer utilities {
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .live-dot {
+    @apply w-2 h-2 rounded-full bg-red-500 inline-block;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
