@@ -7,6 +7,7 @@ import Standings from './pages/Standings';
 import Teams from './pages/Teams';
 import TeamDetail from './pages/TeamDetail';
 import MatchDetail from './pages/MatchDetail';
+import Polls from './pages/Polls';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,6 +32,7 @@ export default function App() {
               <Route path="/teams" element={<Teams />} />
               <Route path="/teams/:id" element={<TeamDetail />} />
               <Route path="/matches/:id" element={<MatchDetail />} />
+              <Route path="/polls" element={<Polls />} />
             </Routes>
           </main>
           <footer className="mt-16 border-t border-gray-800 py-6 text-center text-xs text-gray-600">

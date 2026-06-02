@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchMatches } from '../api';
 import { getH2HNormalized } from '../data/h2h';
 import { format, parseISO } from 'date-fns';
+import MatchSentiment from '../components/MatchSentiment';
 
 function FormDot({ result }: { result: 'W' | 'D' | 'L' }) {
   const colors = { W: 'bg-green-500', D: 'bg-yellow-500', L: 'bg-red-500' };
@@ -268,6 +269,9 @@ export default function MatchDetail() {
           <p className="text-gray-400 text-sm">Head-to-head data coming soon for this fixture</p>
         </div>
       )}
+
+      {/* Audience Sentiment */}
+      <MatchSentiment match={match} />
 
       {/* View squads CTA */}
       <div className="grid grid-cols-2 gap-4">

@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { formatDistanceToNow } from 'date-fns';
 import { fetchMatches, fetchNews, fetchStandings } from '../api';
 import MatchCard from '../components/MatchCard';
 import NewsCard from '../components/NewsCard';
@@ -8,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   const { data: matches = [] } = useQuery({ queryKey: ['matches'], queryFn: fetchMatches, refetchInterval: 30_000 });
-  const { data: news = [], isFetching: newsFetching, refetch: refetchNews, dataUpdatedAt } = useQuery({ queryKey: ['news'], queryFn: fetchNews, refetchInterval: 300_000 });
+  const { data: news = [] } = useQuery({ queryKey: ['news'], queryFn: fetchNews, refetchInterval: 300_000 });
   const { data: standings = [] } = useQuery({ queryKey: ['standings'], queryFn: fetchStandings, refetchInterval: 60_000 });
 
   const liveMatches = matches.filter(m => m.status === 'live');
@@ -74,22 +73,7 @@ export default function Home() {
           {/* Latest News */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <div>
-                <h2 className="text-base font-bold text-white">Latest News</h2>
-                {dataUpdatedAt > 0 && (
-                  <p className="text-xs text-gray-600 mt-0.5">
-                    Updated {formatDistanceToNow(new Date(dataUpdatedAt), { addSuffix: true })}
-                  </p>
-                )}
-              </div>
-              <button
-                onClick={() => refetchNews()}
-                disabled={newsFetching}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs text-gray-400 hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <span className={newsFetching ? 'animate-spin inline-block' : 'inline-block'}>↻</span>
-                {newsFetching ? 'Refreshing…' : 'Refresh'}
-              </button>
+              <h2 className="text-base font-bold text-white">Latest News</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {news.slice(0, 6).map((item, i) => (
